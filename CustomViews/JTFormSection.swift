@@ -8,13 +8,42 @@
 import UIKit
 
 class JTFormSection: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    var formText = UILabel()
+    
+   // JTLabel(textAlignment: .center, fontSize: 17)
+    var textField = JTTextField()
+    
+    init(formText: JTLabel, textField: JTTextField) {
+        super.init(frame: .zero)
+        self.formText = formText
+        self.textField = textField
+        configure()
     }
-    */
+    
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configure() {
+        addSubview(formText)
+        addSubview(textField)
+        formText.translatesAutoresizingMaskIntoConstraints = false
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            formText.leadingAnchor.constraint(equalTo: leadingAnchor),
+            formText.topAnchor.constraint(equalTo: topAnchor),
+            
+            textField.topAnchor.constraint(equalTo: formText.bottomAnchor, constant: 10),
+            textField.leadingAnchor.constraint(equalTo: leadingAnchor),
+            textField.trailingAnchor.constraint(equalTo: trailingAnchor),
+            textField.heightAnchor.constraint(equalToConstant: 40)
 
+        ])
+    }
 }

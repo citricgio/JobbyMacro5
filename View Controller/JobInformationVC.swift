@@ -10,11 +10,11 @@ import UIKit
 class JobInformationVC: UIViewController {
     
     var jobs: Job?
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let coreDataController = CoreDataController.shared
+    lazy var context = coreDataController.persistentContainer.viewContext
     let companyName = UILabel()
-    //JTLabel(textAlignment: .center, fontSize: 20)
     let location = UILabel()
-    //JTLabel(textAlignment: .center, fontSize: 20)
 
     override func viewDidLoad() {
         super.viewDidLoad()

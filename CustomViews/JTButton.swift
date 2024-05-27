@@ -8,13 +8,28 @@
 import UIKit
 
 class JTButton: UIButton {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configure()
     }
-    */
+    
+    init(backgroundColor: UIColor, title: String) {
+        super.init(frame: .zero)
+        self.backgroundColor = .situationLabelGreen
+        self.setTitle(title, for: .normal)
+        configure()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configure() {
+        layer.cornerRadius = 10
+        setTitleColor(.white, for: .normal)
+        titleLabel?.font = UIFont(name: "Cygre-Bold", size: 14)
+        translatesAutoresizingMaskIntoConstraints = false
+    }
 
 }

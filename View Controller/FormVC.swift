@@ -11,7 +11,8 @@ class FormVC: UIViewController {
     
     let jobButton = JTButton(backgroundColor: .systemGreen, title: "Ok")
     let jobListVC = JobListVC()
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let coreDataController = CoreDataController.shared
+    lazy var context = coreDataController.persistentContainer.viewContext
     var fieldsList: [JTTextField] = []
 
     override func viewDidLoad() {
@@ -35,13 +36,11 @@ class FormVC: UIViewController {
             
             switch textfield.offset {
             case 0:
-                newJob.name = textfield.element.text ?? "no name"
+                newJob.name = textfield.element.text
             case 1:
-                newJob.companyName = textfield.element.text ?? "no name"
+                newJob.companyName = textfield.element.text
             case 2:
-                newJob.status = textfield.element.text ?? "no name"
-            case 3:
-                newJob.position = textfield.element.text ?? "no name"
+                newJob.status = textfield.element.text
             default:
                 break
             }
@@ -56,7 +55,7 @@ class FormVC: UIViewController {
     
     func configureForms() {
 
-        for i in 0...3 {
+        for i in 0...2 {
             let formText = JTLabel(label: .jobCompanyNameLabel)
             let textField = JTTextField()
             view.addSubview(formText)
@@ -68,12 +67,13 @@ class FormVC: UIViewController {
             switch i {
             case 0:
                 formText.text = "Job name"
+                textField.placeholder = "Enter a job name"
             case 1:
                 formText.text = "Company"
+                textField.placeholder = "Enter a company name"
             case 2:
                 formText.text = "Situation"
-            case 3:
-                formText.text = "Position"
+                textField.placeholder = "Enter a situation type"
             default:
                 formText.text = "Salary"
             }

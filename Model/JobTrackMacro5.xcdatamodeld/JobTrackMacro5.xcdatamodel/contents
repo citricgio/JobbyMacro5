@@ -3,7 +3,6 @@
     <entity name="Job" representedClassName="Job" syncable="YES">
         <attribute name="companyName" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="position" optional="YES" attributeType="String"/>
-        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String" customClassName="SituationLabel"/>
     </entity>
 </model>

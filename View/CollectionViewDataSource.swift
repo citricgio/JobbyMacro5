@@ -8,48 +8,30 @@
 import UIKit
 
 class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
-    let jobListVC = JobListVC()
-    
-    var jobs = [Job]() {
-        didSet {
-            //jobsCollectionView.reloadData()
-            jobListVC.jobsCollectionView.reloadData()
-        }
-    }
+    var jobs: [Job]?
 
+    init(jobs: [Job]? = nil) {
+        self.jobs = jobs
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return jobs.count
+        return jobs?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? JobCollectionViewCell else { fatalError("Unable to dequeue cells") }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JobCell.reuseID, for: indexPath) as? JobCell else {
+            return UICollectionViewCell()
+        }
+        
+        let job = jobs?[indexPath.row]
+//        
+//        let image: UIImage?
+//        if let photo = job?.ph
+        
+        cell.configureTexts(jobName: job?.name ?? "erro",
+                            companyName: job?.companyName ?? "erro",
+                            situation: job?.status ?? "erro")
 
-        cell.setJob(jobs[indexPath.item])
-        //cell.indexPath = indexPath
         return cell
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JobCollectionViewCell.reuseID, for: indexPath) as? JobCollectionViewCell else {
-//            return UICollectionViewCell()
-//        }
-//        
-//        let job = jobs?[indexPath.row]
-////        
-////        let image: UIImage?
-////        if let photo = job?.ph
-//        
-////        cell.configureTexts(jobName: job?.name ?? "erro",
-////                            companyName: job?.companyName ?? "erro",
-////                            situation: job?.status ?? "erro",
-////                            position: job?.position ?? "erro")
-//        
-//        cell.configureTexts(jobName: job?.name ?? "erro",
-//                            companyName: job?.companyName ?? "erro",
-//                            situation: job?.status ?? "erro")
-//        
-//
-//        return cell
-//    }
-    
 }

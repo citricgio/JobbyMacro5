@@ -7,24 +7,30 @@
 
 import UIKit
 
+enum JTLabelTypes {
+    case jobNameLabel
+    case jobCompanyNameLabel
+    case situationLabel
+}
+
 class JTLabel: UILabel {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
-    }
+    var label: JTLabelTypes
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    init(label: JTLabelTypes) {
+        self.label = label
+        super.init(frame: .zero)
+        self.font = UIFont(name: label == .jobNameLabel ? "Cygre-Bold" : label == .jobCompanyNameLabel ? "Cygre-Bold" : "Cygre-Bold", size: label == .jobNameLabel ? 16 : label == .jobCompanyNameLabel ? 14 : label == .situationLabel ? 14 : 13)
+        configure()
+    }
     
     private func configure() {
-        textColor = .label
         adjustsFontSizeToFitWidth = true
         translatesAutoresizingMaskIntoConstraints = false
     }
 
 }
-
-//#Preview
