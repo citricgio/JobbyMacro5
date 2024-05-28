@@ -23,9 +23,8 @@ class FormVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
     let companyNameField = JTTextField(frame: .zero, placeholder: "Enter a company name")
     let pickerField = JTTextField(frame: .zero, placeholder: "Enter a status")
     
-    let downArrow = UIImageView()
-
-    //let pickerTexts: [String] = ["Active","In Progress","Denied"]
+    let downArrow = UIImage(systemName: "chevron.down")?.withTintColor(.appliedBackground, renderingMode: .automatic)
+    let downArrowView = UIImageView()
     
     let applicationStatusPickerData = [
         SituationTypes.applied.rawValue,
@@ -104,7 +103,7 @@ class FormVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
     func configureFormsStatus() {
         view.addSubview(createStatusName)
         view.addSubview(pickerField)
-        view.addSubview(downArrow)
+        view.addSubview(downArrowView)
         createStatusName.translatesAutoresizingMaskIntoConstraints = false
         createStatusName.text = "Status"
         applicationStatusPicker.delegate = self
@@ -133,17 +132,13 @@ class FormVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
         pickerField.textColor = UIColor(named: "SituationLabelGreen")
         pickerField.layer.borderColor = applicationStatusFieldColors[0].cgColor
         
-        downArrow.translatesAutoresizingMaskIntoConstraints = false
-        downArrow.backgroundColor = .clear
-        let config = UIImage.SymbolConfiguration(textStyle: .largeTitle)
-        let arrow = UIImage(systemName: "chevron.down")?.withTintColor(.appliedBackground, renderingMode: .alwaysOriginal)
-        
-        downArrow.image = arrow
-        
+        downArrowView.translatesAutoresizingMaskIntoConstraints = false
+        downArrowView.image = downArrow
+        downArrowView.tintColor = .appliedBackground
         
         NSLayoutConstraint.activate([
-            downArrow.centerYAnchor.constraint(equalTo: pickerField.centerYAnchor),
-            downArrow.trailingAnchor.constraint(equalTo: pickerField.trailingAnchor, constant: -15)
+            downArrowView.centerYAnchor.constraint(equalTo: pickerField.centerYAnchor),
+            downArrowView.trailingAnchor.constraint(equalTo: pickerField.trailingAnchor, constant: -15)
         ])
 
          
@@ -269,7 +264,6 @@ class FormVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
         pickerField.text = applicationStatusPickerData[row]
         pickerField.layer.borderColor = applicationStatusFieldColors[row].cgColor
         pickerField.textColor = applicationStatusFieldColors[row]
-        downArrow.tintColor = pickerField.textColor
-        //headerView.backgroundColor = applicationStatusFieldColors[row]
+        downArrowView.tintColor = applicationStatusFieldColors[row]
     }
 }
