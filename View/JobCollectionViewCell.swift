@@ -20,9 +20,24 @@ class JobCell: UICollectionViewCell {
     
     var statusLabelText = JTLabel(label: .jobNameLabel)
     
-    
     let logoImageView = UIImageView()
     let divider = UIView()
+    
+    func setJobImage(_ job: Job) {
+        ImageCache.shared.loadImage(companyName: job.companyName ?? "Google") { (image, fromCache) in
+            guard let image = image else { return }
+            if fromCache {
+                self.logoImageView.image = image
+            } else {
+                UIView.transition(
+                    with: self,
+                    duration: 0.15,
+                    options: .transitionCrossDissolve,
+                    animations: { self.logoImageView.image = image }
+                )
+            }
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -72,9 +87,9 @@ class JobCell: UICollectionViewCell {
     func configureJobImage() {
         container.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.layer.borderWidth = 2
+        //logoImageView.layer.borderWidth = 2
         logoImageView.contentMode = .scaleToFill
-        logoImageView.backgroundColor = .situationGreen
+        //logoImageView.backgroundColor = .situationGreen
         
         NSLayoutConstraint.activate([
             logoImageView.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),

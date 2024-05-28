@@ -1,9 +1,8 @@
 //
-//  ImageCache.swift
-//  JobTrack
+//  AppDelegate.swift
+//  JobTrackMacro5
 //
-//  Created by Arjun Dureja on 2021-07-03.
-//  Copyright © 2021 Arjun Dureja. All rights reserved.
+//  Created by Giovanna Micher on 17/05/24.
 //
 
 import UIKit

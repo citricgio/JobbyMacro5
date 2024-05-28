@@ -25,6 +25,12 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         let job = jobs?[indexPath.row]
         
+        if let job = jobs?[indexPath.item] {
+            cell.setJobImage(job)
+        } else {
+            
+        }
+        
         cell.configureTexts(jobName: job?.name ?? "erro",
                             companyName: job?.companyName ?? "erro",
                             situation: job?.status ?? "erro")
