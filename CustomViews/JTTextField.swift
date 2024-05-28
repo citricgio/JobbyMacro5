@@ -9,8 +9,10 @@ import UIKit
 
 class JTTextField: UITextField {
 
-    override init(frame: CGRect) {
+
+    init(frame: CGRect, placeholder: String) {
         super.init(frame: frame)
+        self.placeholder = placeholder
         configure()
     }
     
@@ -19,23 +21,24 @@ class JTTextField: UITextField {
     }
     
     private func configure() {
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 20))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+        
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 10
         layer.borderWidth = 2
         layer.borderColor = UIColor.systemGray4.cgColor
         
-        textColor = .label //black on lightmode and white on darkmode
+        textColor = .systemGray //black on lightmode and white on darkmode
         tintColor = .label
-        textAlignment = .center
-        
-        font = UIFont(name: "Cygre-Light", size: 14)
-        adjustsFontSizeToFitWidth = true //for a very long name, the font will shrink to fit in the text field
+
+        font = UIFont.systemFont(ofSize: 14)
+        adjustsFontSizeToFitWidth = true
         minimumFontSize = 12
         backgroundColor = .tertiarySystemBackground
-        //autocorrectionType = .no
         returnKeyType = .go
         
-        //placeholder = "Enter a job name"
     }
     
 }

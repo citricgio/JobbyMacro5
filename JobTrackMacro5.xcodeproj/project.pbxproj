@@ -11,6 +11,7 @@
 		0836473B2C03DC2E0060BB44 /* Job+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083647392C03DC2E0060BB44 /* Job+CoreDataClass.swift */; };
 		0836473C2C03DC2E0060BB44 /* Job+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0836473A2C03DC2E0060BB44 /* Job+CoreDataProperties.swift */; };
 		083647A12C04F3780060BB44 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083647A02C04F3780060BB44 /* CoreDataController.swift */; };
+		083647A72C065B210060BB44 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083647A62C065B210060BB44 /* UIColor+Ext.swift */; };
 		085082522BF7CC36000E04C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085082512BF7CC36000E04C5 /* AppDelegate.swift */; };
 		085082542BF7CC36000E04C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085082532BF7CC36000E04C5 /* SceneDelegate.swift */; };
 		0850825C2BF7CC36000E04C5 /* JobTrackMacro5.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0850825A2BF7CC36000E04C5 /* JobTrackMacro5.xcdatamodeld */; };
@@ -37,6 +38,7 @@
 		083647392C03DC2E0060BB44 /* Job+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Job+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0836473A2C03DC2E0060BB44 /* Job+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Job+CoreDataProperties.swift"; path = "../Job+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		083647A02C04F3780060BB44 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
+		083647A62C065B210060BB44 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		0850824E2BF7CC36000E04C5 /* JobTrackMacro5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobTrackMacro5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		085082512BF7CC36000E04C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		085082532BF7CC36000E04C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				085082622BF7CC37000E04C5 /* Info.plist */,
+				083647A62C065B210060BB44 /* UIColor+Ext.swift */,
 			);
 			path = JobTrackMacro5;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				0836473B2C03DC2E0060BB44 /* Job+CoreDataClass.swift in Sources */,
 				0836473C2C03DC2E0060BB44 /* Job+CoreDataProperties.swift in Sources */,
 				085082D42BFD0CBF000E04C5 /* UIView+Ext.swift in Sources */,
+				083647A72C065B210060BB44 /* UIColor+Ext.swift in Sources */,
 				085082E12BFE6CAC000E04C5 /* JTFormSection.swift in Sources */,
 				085082C52BFBC756000E04C5 /* JTLabel.swift in Sources */,
 				085082E32BFE8E60000E04C5 /* CollectionViewDelegate.swift in Sources */,

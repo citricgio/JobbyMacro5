@@ -16,7 +16,7 @@ class JobCell: UICollectionViewCell {
     var jobNameLabel = JTLabel(label: .jobNameLabel)
 
     var companyNameLabel = JTLabel(label: .jobCompanyNameLabel)
-    let statusLabel = SituationLabel(variant: .active)
+    let statusLabel = SituationLabel(variant: .applied)
     
     var statusLabelText = JTLabel(label: .jobNameLabel)
     

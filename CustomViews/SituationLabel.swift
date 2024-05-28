@@ -7,11 +7,11 @@
 
 import UIKit
 
-enum SituationTypes {
+enum SituationTypes: String {
     
-    case active
-    case inProgress
-    case denied
+    case applied = "Applied"
+    case inProgress = "In Progress"
+    case denied = "Denied"
 }
 
 class SituationLabel: UIView {
@@ -19,7 +19,7 @@ class SituationLabel: UIView {
     var variant: SituationTypes
     var situationText = JTLabel(label: .situationLabel)
     
-    init(variant: SituationTypes = .active) {
+    init(variant: SituationTypes = .applied) {
         self.variant = variant
         super.init(frame: .zero)
         self.addSubview(situationText)
@@ -34,7 +34,7 @@ class SituationLabel: UIView {
     
     private func configureContainerLabel() {
         layer.cornerRadius = 15
-        backgroundColor = UIColor(named: variant == .active ? "SituationGreen" : variant == .inProgress ? "SituationYellow" : "SituationRed")
+        backgroundColor = UIColor(named: variant == .applied ? "SituationGreen" : variant == .inProgress ? "SituationYellow" : "SituationRed")
         NSLayoutConstraint.activate([
             self.centerYAnchor.constraint(equalTo: centerYAnchor),
             self.heightAnchor.constraint(equalTo: situationText.heightAnchor, constant: 7),
@@ -44,8 +44,8 @@ class SituationLabel: UIView {
     
     private func setText() {
         situationText.translatesAutoresizingMaskIntoConstraints = false
-        situationText.text = variant == .active ? "Applied" : variant == .inProgress ? "In Progress" : "Denied"
-        situationText.textColor = UIColor(named: variant == .active ? "SituationLabelGreen" : variant == .inProgress ? "SituationLabelYellow" : "SituationLabelRed")
+        situationText.text = variant == .applied ? "Applied" : variant == .inProgress ? "In Progress" : "Denied"
+        situationText.textColor = UIColor(named: variant == .applied ? "SituationLabelGreen" : variant == .inProgress ? "SituationLabelYellow" : "SituationLabelRed")
         
         NSLayoutConstraint.activate([
             situationText.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -1),
@@ -56,5 +56,5 @@ class SituationLabel: UIView {
 }
 
 #Preview {
-    SituationLabel(variant: .active)
+    SituationLabel(variant: .applied)
 }
