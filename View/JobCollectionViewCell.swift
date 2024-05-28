@@ -16,7 +16,7 @@ class JobCell: UICollectionViewCell {
     var jobNameLabel = JTLabel(label: .jobNameLabel)
 
     var companyNameLabel = JTLabel(label: .jobCompanyNameLabel)
-    let statusLabel = SituationLabel(variant: .applied)
+    var statusLabel = SituationLabel()
     
     var statusLabelText = JTLabel(label: .jobNameLabel)
     
@@ -54,6 +54,7 @@ class JobCell: UICollectionViewCell {
             container.centerYAnchor.constraint(equalTo: centerYAnchor),
             container.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             container.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2)
             //container.heightAnchor.constraint(equalToConstant: 160)
         ])
     }
@@ -113,7 +114,15 @@ class JobCell: UICollectionViewCell {
     func configureTexts(jobName: String, companyName: String, situation: String) {
         jobNameLabel.text = jobName
         companyNameLabel.text = companyName
-        statusLabelText.text = situation
+        if situation == "Applied" {
+            statusLabel.variant = .applied
+        } else if situation == "In Progress" {
+            statusLabel.variant = .inProgress
+        } else {
+            statusLabel.variant = .denied
+        }
+        statusLabel.backgroundColor = UIColor(named: statusLabel.variant == .applied ? "SituationGreen": statusLabel.variant == .inProgress ? "SituationYellow": "SituationRed")
+        statusLabel.setText()
 
     }
     

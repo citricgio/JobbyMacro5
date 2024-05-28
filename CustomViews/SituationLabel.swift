@@ -16,15 +16,15 @@ enum SituationTypes: String {
 
 class SituationLabel: UIView {
     
-    var variant: SituationTypes
+    var variant: SituationTypes?
     var situationText = JTLabel(label: .situationLabel)
     
-    init(variant: SituationTypes = .applied) {
-        self.variant = variant
+    init() {
+//        self.variant = variant
         super.init(frame: .zero)
         self.addSubview(situationText)
         configureContainerLabel()
-        setText()
+//        setText()
     }
     
     required init?(coder: NSCoder) {
@@ -34,7 +34,7 @@ class SituationLabel: UIView {
     
     private func configureContainerLabel() {
         layer.cornerRadius = 15
-        backgroundColor = UIColor(named: variant == .applied ? "SituationGreen" : variant == .inProgress ? "SituationYellow" : "SituationRed")
+        //backgroundColor = UIColor(named: variant == .applied ? "SituationGreen" : variant == .inProgress ? "SituationYellow" : "SituationRed")
         NSLayoutConstraint.activate([
             self.centerYAnchor.constraint(equalTo: centerYAnchor),
             self.heightAnchor.constraint(equalTo: situationText.heightAnchor, constant: 7),
@@ -42,7 +42,7 @@ class SituationLabel: UIView {
         ])
     }
     
-    private func setText() {
+    func setText() {
         situationText.translatesAutoresizingMaskIntoConstraints = false
         situationText.text = variant == .applied ? "Applied" : variant == .inProgress ? "In Progress" : "Denied"
         situationText.textColor = UIColor(named: variant == .applied ? "SituationLabelGreen" : variant == .inProgress ? "SituationLabelYellow" : "SituationLabelRed")
@@ -55,6 +55,6 @@ class SituationLabel: UIView {
     
 }
 
-#Preview {
-    SituationLabel(variant: .applied)
-}
+//#Preview {
+//    SituationLabel(variant: .applied)
+//}

@@ -19,6 +19,12 @@ class FormVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
     let createStatusName = JTLabel(label: .jobCompanyNameLabel)
     let applicationStatusPicker = UIPickerView()
     
+    var allJobs = [Job]() {
+        didSet {
+            jobListVC.jobs = allJobs
+        }
+    }
+    
     let jobNameField = JTTextField(frame: .zero, placeholder: "Enter a job name")
     let companyNameField = JTTextField(frame: .zero, placeholder: "Enter a company name")
     let pickerField = JTTextField(frame: .zero, placeholder: "Enter a status")
@@ -153,74 +159,19 @@ class FormVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
         ])
     }
     
-    //    @objc func addJob() {
-    //        navigationController?.popViewController(animated: true)
-    //
-    //        let newJob = Job(context: context)
-    //        for textfield in fieldsList.enumerated() {
-    //
-    //            switch textfield.offset {
-    //            case 0:
-    //                newJob.name = textfield.element.text
-    //            case 1:
-    //                newJob.companyName = textfield.element.text
-    //            case 2:
-    //                newJob.status = textfield.element.text
-    //            default:
-    //                break
-    //            }
-    //        }
-    //
-    //        do {
-    //            try context.save()
-    //        } catch {
-    //            print("Não salvou")
-    //        }
-    //    }
+    @objc func addJob() {
+        navigationController?.popViewController(animated: true)
+        let newJob = Job(context: context)
+        newJob.name = jobNameField.text
+        newJob.companyName = companyNameField.text
+        newJob.status = pickerField.text
         
-    
-//    func configureForms() {
-//
-//        for i in 0...2 {
-//            let formText = JTLabel(label: .jobCompanyNameLabel)
-//            let textField = JTTextField()
-//            view.addSubview(formText)
-//            view.addSubview(textField)
-//            formText.translatesAutoresizingMaskIntoConstraints = false
-//            textField.translatesAutoresizingMaskIntoConstraints = false
-//            
-//            
-//            switch i {
-//            case 0:
-//                formText.text = "Job name"
-//                textField.placeholder = "Enter a job name"
-//            case 1:
-//                formText.text = "Company"
-//                textField.placeholder = "Enter a company name"
-//            case 2:
-//                formText.text = "Status"
-//               configurePicker(textField: textField)
-//
-//            default:
-//                formText.text = "Salary"
-//            }
-//            
-//            fieldsList.append(textField)
-//            
-//            NSLayoutConstraint.activate([
-//                
-//                formText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-//                formText.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: CGFloat(80 * i)),
-//                
-//                textField.topAnchor.constraint(equalTo: formText.bottomAnchor, constant: 10),
-//                textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-//                textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-//                textField.heightAnchor.constraint(equalToConstant: 40)
-//                
-//            ])
-//        }
-//    }
-    
+        do {
+            try context.save()
+        } catch {
+            print("Não salvou")
+        }
+    }
     
     func configureJobButton() {
         view.addSubview(jobButton)
@@ -243,7 +194,7 @@ class FormVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
 
 
 @objc func pushJobListVC() {
-        //addJob()
+        addJob()
         navigationController?.popViewController(animated: true)
         //fieldsList.removeAll()
     }

@@ -24,9 +24,6 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
         }
         
         let job = jobs?[indexPath.row]
-//        
-//        let image: UIImage?
-//        if let photo = job?.ph
         
         cell.configureTexts(jobName: job?.name ?? "erro",
                             companyName: job?.companyName ?? "erro",

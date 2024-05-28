@@ -14,6 +14,7 @@ class JobListVC: UIViewController, UISearchBarDelegate, UISearchControllerDelega
     var collectionViewDataSource: CollectionViewDataSource?
     lazy var context = coreDataController.persistentContainer.viewContext
     var jobs: [Job]?
+    var filteredJobs = [Job]()
     
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -42,7 +43,7 @@ class JobListVC: UIViewController, UISearchBarDelegate, UISearchControllerDelega
         collectionView.register(JobCell.self, forCellWithReuseIdentifier: JobCell.reuseID)
         
         setCollection()
-        configureSearchBar()
+        //configureSearchBar()
         
         // Binary Data
 //        let image = UIImageView()
@@ -109,12 +110,18 @@ class JobListVC: UIViewController, UISearchBarDelegate, UISearchControllerDelega
         navigationController?.pushViewController(formVC, animated: true)
     }
     
-    func configureSearchBar() {
-        let search = UISearchController(searchResultsController: nil)
-        search.delegate = self
-        search.searchBar.delegate = self
-        self.navigationItem.searchController = search
-
-    }
+//    func configureSearchBar() {
+//        let search = UISearchController(searchResultsController: nil)
+//        search.delegate = self
+//        search.searchBar.delegate = self
+//        self.navigationItem.searchController = search
+//
+//    }
+    
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        filteredJobs = jobs?.filter {
+//            $0.name?.lowercased().hasPrefix(searchText.lowercased()) ?? false
+//        } ?? []
+//    }
 
 }
