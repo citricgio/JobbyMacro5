@@ -14,7 +14,7 @@ class CollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout {
         
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedData = dataSource?.jobs?[indexPath.row]
-        pushView(jobs: selectedData!)
+        //pushView(jobs: selectedData!)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -22,7 +22,7 @@ class CollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 145)
+        return CGSize(width: UIScreen.main.bounds.width, height: 140)
     }
     
     func pushView(jobs: Job) {

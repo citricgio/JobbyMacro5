@@ -14,7 +14,7 @@ class JobListVC: UIViewController, UISearchBarDelegate, UISearchControllerDelega
     var collectionViewDataSource: CollectionViewDataSource?
     lazy var context = coreDataController.persistentContainer.viewContext
     var jobs: [Job]?
-    var filteredJobs = [Job]()
+    //var filteredJobs = [Job]()
     
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -26,6 +26,7 @@ class JobListVC: UIViewController, UISearchBarDelegate, UISearchControllerDelega
         
         return collection
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,10 @@ class JobListVC: UIViewController, UISearchBarDelegate, UISearchControllerDelega
     override func viewWillAppear(_ animated: Bool) {
         fetchJob()
         collectionViewDataSource?.jobs = jobs
+        
+//        if jobs?.count != 0 {
+//            configureClearBitButton()
+//        }
     }
     
     func setCollection() {

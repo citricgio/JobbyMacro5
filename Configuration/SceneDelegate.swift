@@ -61,6 +61,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
-#Preview {
-    UINavigationController(rootViewController: JobListVC())
-}
+//#Preview {
+//    UINavigationController(rootViewController: JobListVC())
+//}

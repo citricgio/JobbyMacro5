@@ -18,13 +18,15 @@ class FormVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
     let createCompanyName = JTLabel(label: .jobCompanyNameLabel)
     let createStatusName = JTLabel(label: .jobCompanyNameLabel)
     let applicationStatusPicker = UIPickerView()
+    let clearbitLink = UIButton(type: .system)
+
     
-    var allJobs = [Job]() {
-        didSet {
-            jobListVC.jobs = allJobs
-        }
-    }
-    
+//    var allJobs = [Job]() {
+//        didSet {
+//            jobListVC.jobs = allJobs
+//        }
+//    }
+        
     let jobNameField = JTTextField(frame: .zero, placeholder: "Enter a job name")
     let companyNameField = JTTextField(frame: .zero, placeholder: "Enter a company name")
     let pickerField = JTTextField(frame: .zero, placeholder: "Enter a status")
@@ -56,9 +58,31 @@ class FormVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
         configureFormsJobName()
         configureFormsCompanyName()
         configureFormsStatus()
+        configureClearBitButton()
+        //configureClearBitButton()
         
         createDismissKeyboardTapGesture()
     }
+    
+    func configureClearBitButton() {
+        view.addSubview(clearbitLink)
+        clearbitLink.translatesAutoresizingMaskIntoConstraints = false
+        clearbitLink.setTitle("Logos provided by Clearbit", for: .normal)
+        clearbitLink.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        clearbitLink.addTarget(self, action: #selector(clearbitTapped), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            clearbitLink.topAnchor.constraint(equalTo: pickerField.bottomAnchor, constant: 25),
+            clearbitLink.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    @objc func clearbitTapped() {
+        if let url = URL(string: "https://clearbit.com"), !url.absoluteString.isEmpty {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         //self.navigationItem.setHidesBackButton(true, animated: true)
@@ -190,6 +214,7 @@ class FormVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
+    
 
 
 

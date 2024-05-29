@@ -25,7 +25,7 @@ class CollectionViewDataSource: NSObject, UICollectionViewDataSource {
         
         let job = jobs?[indexPath.row]
         
-        if let job = jobs?[indexPath.item] {
+        if let job = jobs?[indexPath.row] {
             cell.setJobImage(job)
         } else {
             

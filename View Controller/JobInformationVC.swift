@@ -13,36 +13,30 @@ class JobInformationVC: UIViewController {
     
     let coreDataController = CoreDataController.shared
     lazy var context = coreDataController.persistentContainer.viewContext
-    let companyName = UILabel()
-    let location = UILabel()
+    let companyName = JTLabel(label: .jobNameLabel)
+    var statusLabel = SituationLabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = jobs?.name
+        configureViewController()
         configureCompanyName()
-        //configureJobLocation()
+    }
+    
+    func configureViewController() {
+        view.backgroundColor = .systemBackground
     }
     
     func configureCompanyName() {
-        companyName.text = jobs?.companyName
+        companyName.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(companyName)
+        companyName.text = jobs?.companyName
         
         NSLayoutConstraint.activate([
-            companyName.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            companyName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            companyName.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            companyName.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
         ])
         
     }
-    
-//    func configureJobLocation() {
-//        location.text = jobs?.address
-//        view.addSubview(location)
-//        
-//        NSLayoutConstraint.activate([
-//            location.topAnchor.constraint(equalTo: companyName.topAnchor, constant: 10),
-//            location.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
-//        ])
-//    }
-
 
 }

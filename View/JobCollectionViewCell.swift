@@ -12,16 +12,35 @@ class JobCell: UICollectionViewCell {
     static let reuseID = "JobCell"
     
     let container = UIView()
-    
+
     var jobNameLabel = JTLabel(label: .jobNameLabel)
 
     var companyNameLabel = JTLabel(label: .jobCompanyNameLabel)
     var statusLabel = SituationLabel()
     
     var statusLabelText = JTLabel(label: .jobNameLabel)
-    
+    let logoActivityIndicator = UIActivityIndicatorView()
+
     let logoImageView = UIImageView()
     let divider = UIView()
+    
+    let applicationStatusFieldColors: [UIColor] = [
+        .appliedBackground,
+        .inProgressBackground,
+        .deniedBackground
+    ]
+    
+    func configureActivityIndicator() {
+        logoActivityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        logoActivityIndicator.color = .black
+        logoActivityIndicator.startAnimating()
+        logoImageView.addSubview(logoActivityIndicator)
+        
+        NSLayoutConstraint.activate([
+            logoActivityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
+            logoActivityIndicator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 38.5)
+        ])
+    }
     
     func setJobImage(_ job: Job) {
         ImageCache.shared.loadImage(companyName: job.companyName ?? "Google") { (image, fromCache) in
@@ -37,6 +56,7 @@ class JobCell: UICollectionViewCell {
                 )
             }
         }
+        self.logoActivityIndicator.stopAnimating()
     }
     
     override init(frame: CGRect) {
@@ -62,11 +82,14 @@ class JobCell: UICollectionViewCell {
         container.layer.cornerRadius = 12
         container.layer.masksToBounds = false
         container.clipsToBounds = true
+        container.layer.borderWidth = 2
+        container.layer.borderColor = applicationStatusFieldColors[0].cgColor
+        
         container.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             container.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            container.centerYAnchor.constraint(equalTo: centerYAnchor),
+           // container.centerYAnchor.constraint(equalTo: centerYAnchor),
             container.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             container.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
             container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2)
@@ -136,6 +159,8 @@ class JobCell: UICollectionViewCell {
         } else {
             statusLabel.variant = .denied
         }
+        container.layer.borderColor = statusLabel.variant == .applied ? applicationStatusFieldColors[0].cgColor : statusLabel.variant == .inProgress ? applicationStatusFieldColors[1].cgColor : statusLabel.variant == .denied ? applicationStatusFieldColors[2].cgColor : applicationStatusFieldColors[0].cgColor
+
         statusLabel.backgroundColor = UIColor(named: statusLabel.variant == .applied ? "SituationGreen": statusLabel.variant == .inProgress ? "SituationYellow": "SituationRed")
         statusLabel.setText()
 
@@ -143,6 +168,6 @@ class JobCell: UICollectionViewCell {
     
 }
 
-#Preview {
-    JobCell()
-}
+//#Preview {
+//    JobCell()
+//}
